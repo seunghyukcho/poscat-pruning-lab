@@ -2,6 +2,7 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <future>
 #include <fstream>
 #include "tester.h"
 #include "colormode.h"
@@ -128,25 +129,29 @@ int Tester::scoring(TestCase testCase)
  */
 int Tester::test(int testCaseNumber)
 {
+	bool flag = false;
 	std::mutex m;
-    std::condition_variable cv;
+	std::condition_variable cv;
+
 	TestCase testCase = testCases[testCaseNumber];
 	std::vector<Action> solution = solutions[testCaseNumber];
-	Action userAnswer;
+	Action userAnswer = {0, 0, 0};
 
 	std::thread t([&]()
 	{
 		solve(testCase, userAnswer);
+		flag = true;
 		cv.notify_one();
 	});
 
 	t.detach();
 
 	{
-        std::unique_lock<std::mutex> l(m);
-        if(cv.wait_for(l, std::chrono::seconds(1)) == std::cv_status::timeout) 
-           	return 2;
-    }
+		std::unique_lock<std::mutex> l(m);
+
+		if(!cv.wait_for(l, std::chrono::seconds(1), [&flag]{ return flag; }))
+			return 2;
+	}
 
 	for(Action& ans : solution)
 	{
