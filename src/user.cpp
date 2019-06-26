@@ -1,5 +1,4 @@
 #include "tester.h"
-#include <unistd.h>
 
 /**
  * @brief
@@ -10,7 +9,8 @@
  * @param testCase The input testcase that you should use. The definition is in includes/utility.h
  * @param 
  * Parameter for your answer. The definition is in includes/utility.h
- * You should modify it to match your answer. Please see the sample code if it is hard to understand.
+ * You should modify it to be your answer. Please see the sample code if it is hard to understand.
+ * If there are several solutions, you can just pick one of them.
  */
 void Tester::solve(TestCase testCase, Action& answer)
 {

@@ -81,7 +81,7 @@ void Tester::testAll()
 	for(int t = 0; t < testCases.size(); t++)
 	{
 		std::cout << "[TC #";
-		if(t < 10) std::cout << "0";
+		if(t + 1 < 10) std::cout << "0";
 		std::cout << t + 1 << "] ";
 		result = test(t);
 
@@ -116,7 +116,75 @@ void Tester::testAll()
 
 int Tester::scoring(TestCase testCase)
 {
-	return 1;
+	int sc[3] = {0, 0, 0}, num[3] = {0, 0, 0};
+	
+	for(int i = 1; i <= 5; ++i)
+	{
+		num[1] = num[2] = 0;
+		for(int j = 1; j <= 5; ++j)
+		{
+			num[testCase.board[i][j]]++;
+		}
+		
+		for(int k = 1; k <= 2; ++k)
+		{
+			if(num[k] == 5) 
+				sc[k] = 1e9;
+			else 
+				sc[k] += num[k] * num[k];
+			num[k] = 0;
+		}
+		
+		
+		for(int j = 1; j <= 5; ++j)
+		{
+			num[testCase.board[j][i]]++;
+		}
+
+		for(int k = 1; k <= 2; ++k)
+		{
+			if(num[k] == 5) 
+				sc[k] = 1e9;
+			else 
+				sc[k] += num[k] * num[k];
+			num[k] = 0;
+		}
+	}
+	
+	for(int j = 1; j <= 5; ++j)
+	{
+		num[testCase.board[j][j]]++;
+	}
+
+	for(int k = 1; k <= 2; ++k)
+	{
+		if(num[k] == 5) 
+			sc[k] = 1e9;
+		else 
+			sc[k] += num[k] * num[k];
+		num[k] = 0;
+	}
+	
+	for(int j = 1; j <= 5; ++j)
+	{
+		num[testCase.board[j][6 - j]]++;
+	}
+
+	for(int k = 1; k <= 2; ++k)
+	{
+		if(num[k] == 5) 
+			sc[k]=1e9;
+		else 
+			sc[k] += num[k] * num[k];
+		num[k] = 0;
+	}
+	
+	if(sc[1] - sc[2] > 1e8) 
+		return 1e9;
+	else if(sc[1] - sc[2] < -1e8) 
+		return -1e9;
+	else 
+		return sc[1] - sc[2];	
 }
 
 /**

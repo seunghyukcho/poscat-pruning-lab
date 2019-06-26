@@ -7,7 +7,7 @@
  */
 int main()
 {
-	int testCaseNumber = 1;
+	int testCaseNumber = 10;
 	Tester tester(testCaseNumber);
 	
 	tester.testAll();

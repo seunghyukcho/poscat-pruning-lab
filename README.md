@@ -43,21 +43,11 @@ make
 [TC #08] WRONG ANSWER
 [TC #09] WRONG ANSWER
 [TC #10] WRONG ANSWER
-[TC #11] WRONG ANSWER
-[TC #12] WRONG ANSWER
-[TC #13] WRONG ANSWER
-[TC #14] WRONG ANSWER
-[TC #15] WRONG ANSWER
-[TC #16] WRONG ANSWER
-[TC #17] WRONG ANSWER
-[TC #18] WRONG ANSWER
-[TC #19] WRONG ANSWER
-[TC #20] WRONG ANSWER
 
-Total Result: 0 / 20
+Total Result: 0 / 10
 ```
 
-- 이제 20개의 testcase에 대해서 모두 정답을 맞는 것을 목표로 하시면 됩니다!
+- 이제 10개의 testcase에 대해서 모두 정답을 맞는 것을 목표로 하시면 됩니다!
 - 코드는 src/user.cpp의 solve 함수를 구현하시면 됩니다. 
 - **단, user.cpp 이외의 코드는 수정하시면 안됩니다!**
 
