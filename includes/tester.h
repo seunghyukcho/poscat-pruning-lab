@@ -16,8 +16,8 @@ public:
 	void importTestCase(int testCaseNumber);
 	void testAll();
 	int test(int testCaseNumber);
-	void solve(TestCase testCase, Action& answer);
-	int scoring(TestCase testCase);
+	void solve(int board[][6], Action& answer);
+	static int scoring(int board[][6]);
 };
 
 #endif

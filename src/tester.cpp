@@ -49,8 +49,8 @@ void Tester::importTestCase(int testCaseNumber)
 			solution.push_back(newAction);
 		}
 
-		for(int i = 1; i <= 6; i++)
-			for(int j = 1; j <= 6; j++)
+		for(int i = 1; i < 6; i++)
+			for(int j = 1; j < 6; j++)
 				inFile >> testCase.board[i][j];
 
 		solutions.push_back(solution);
@@ -114,7 +114,7 @@ void Tester::testAll()
 	}
 }
 
-int Tester::scoring(TestCase testCase)
+int Tester::scoring(int board[][6])
 {
 	int sc[3] = {0, 0, 0}, num[3] = {0, 0, 0};
 	
@@ -123,7 +123,7 @@ int Tester::scoring(TestCase testCase)
 		num[1] = num[2] = 0;
 		for(int j = 1; j <= 5; ++j)
 		{
-			num[testCase.board[i][j]]++;
+			num[board[i][j]]++;
 		}
 		
 		for(int k = 1; k <= 2; ++k)
@@ -138,7 +138,7 @@ int Tester::scoring(TestCase testCase)
 		
 		for(int j = 1; j <= 5; ++j)
 		{
-			num[testCase.board[j][i]]++;
+			num[board[j][i]]++;
 		}
 
 		for(int k = 1; k <= 2; ++k)
@@ -153,7 +153,7 @@ int Tester::scoring(TestCase testCase)
 	
 	for(int j = 1; j <= 5; ++j)
 	{
-		num[testCase.board[j][j]]++;
+		num[board[j][j]]++;
 	}
 
 	for(int k = 1; k <= 2; ++k)
@@ -167,7 +167,7 @@ int Tester::scoring(TestCase testCase)
 	
 	for(int j = 1; j <= 5; ++j)
 	{
-		num[testCase.board[j][6 - j]]++;
+		num[board[j][6 - j]]++;
 	}
 
 	for(int k = 1; k <= 2; ++k)
@@ -205,9 +205,16 @@ int Tester::test(int testCaseNumber)
 	std::vector<Action> solution = solutions[testCaseNumber];
 	Action userAnswer = {0, 0, 0};
 
+	for(int i = 1; i <= 5; i++)
+	{
+		for(int j = 1; j <= 5; j++)
+			std::cout << testCase.board[i][j] << ' ';
+		std::cout << '\n';
+	}
+
 	std::thread t([&]()
 	{
-		solve(testCase, userAnswer);
+		solve(testCase.board, userAnswer);
 		flag = true;
 		cv.notify_one();
 	});
@@ -221,8 +228,12 @@ int Tester::test(int testCaseNumber)
 			return 2;
 	}
 
+	std::cout << userAnswer.x << ' ' << userAnswer.y << ' ' << userAnswer.dir << '\n';
 	for(Action& ans : solution)
 	{
+		std::cout << "solution\n";
+		std::cout << ans.x << ' ' << ans.y << ' ' << ans.dir << '\n';
+		
 		if(ans == userAnswer)
 			return 0;
 	}
