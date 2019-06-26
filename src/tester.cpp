@@ -205,13 +205,6 @@ int Tester::test(int testCaseNumber)
 	std::vector<Action> solution = solutions[testCaseNumber];
 	Action userAnswer = {0, 0, 0};
 
-	for(int i = 1; i <= 5; i++)
-	{
-		for(int j = 1; j <= 5; j++)
-			std::cout << testCase.board[i][j] << ' ';
-		std::cout << '\n';
-	}
-
 	std::thread t([&]()
 	{
 		solve(testCase.board, userAnswer);
@@ -228,12 +221,8 @@ int Tester::test(int testCaseNumber)
 			return 2;
 	}
 
-	std::cout << userAnswer.x << ' ' << userAnswer.y << ' ' << userAnswer.dir << '\n';
 	for(Action& ans : solution)
 	{
-		std::cout << "solution\n";
-		std::cout << ans.x << ' ' << ans.y << ' ' << ans.dir << '\n';
-		
 		if(ans == userAnswer)
 			return 0;
 	}
