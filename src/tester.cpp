@@ -4,6 +4,7 @@
 #include <condition_variable>
 #include <future>
 #include <fstream>
+#include <string>
 #include "tester.h"
 #include "colormode.h"
 
