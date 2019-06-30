@@ -1,6 +1,6 @@
-# Quixo Practice
+# Pruning Lab
 
-Quixo 문제를 해결하는 solver를 구현할 수 있는 platform입니다. 구현한 solver를 여러 개의 testcase로 평가하여, 결과를 보여드립니다. 규칙은 [여기](https://www.ultraboardgames.com/quixo/game-rules.php)에서 확인하실 수 있습니다.
+POSCAT(POSTECH Computer Algorithm Team)에서 만든 Game AI lab으로, pruning의 일종인 [alpha-beta pruning](https://ko.wikipedia.org/wiki/%EC%95%8C%ED%8C%8C-%EB%B2%A0%ED%83%80_%EA%B0%80%EC%A7%80%EC%B9%98%EA%B8%B0)의 이해와 구현을 돕기 위해 만들어졌습니다. 보드 게임의 일종인, quixo를 해결하는 solver를 구현할 수 있는 platform입니다. solver를 여러 개의 testcase로 평가한 결과를 보여드립니다. Quixo의 규칙은 [링크](https://www.ultraboardgames.com/quixo/game-rules.php)에서 확인하실 수 있습니다.
 
 ## Getting Started
 
